@@ -5,6 +5,7 @@ import time
 
 import crea_suppr_table
 import edition
+import affichage
 
 def clear():
     if platform.system()=="Darwin" or platform.system()=="Linux":
@@ -158,7 +159,29 @@ def main():
         
         # Affichage de table
         case 4:
-            pass
+            clear()
+            try:
+                print("Les tables existantes sont : ", end="")
+                if len(os.listdir(repertoire))!=0:
+                    for file in os.listdir(repertoire):
+                        print(file[6], end=" ")
+                    print("")
+                else:
+                    print("Aucune table n'existe, retour au menu")
+                    time.sleep(3)
+                    main()
+                affichage.affichage_table()
+                choixx=input("Ecrivez pour quitter : ")
+                if choixx!="":
+                    clear()
+                    main()
+                else:
+                    affichage.affichage_table()
+            except IndexError:
+                print("La table n'existe pas, retour au menu")
+                time.sleep(3)
+                clear()
+                main()
         
         # Quitter le programme
         case 5:
@@ -170,5 +193,3 @@ def main():
             time.sleep(2)
             clear()
             main()
-        
-        

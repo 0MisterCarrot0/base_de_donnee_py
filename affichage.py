@@ -33,11 +33,12 @@ def affichage_table():
     print("+")
     
     # Affichage des entités de la table
+    limite=f"<{largeur_table-1}"
     with open(file_path, "r", newline="") as fichier:
         lecteur=csv.reader(fichier, delimiter=";")
         for ligne in lecteur:
             for i in range(len(ligne)):
-                print(f"|{ligne[i][:largeur_case+1]:<15}", end="")
+                print(f"|{ligne[i][:largeur_case]:<{largeur_case}}", end="")
             print("|")
             if ligne[0]=="CLE":
                 for j in range(len(ligne)):
