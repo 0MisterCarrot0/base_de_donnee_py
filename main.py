@@ -16,10 +16,14 @@ def clear():
 def main():
     clear()
     
-    # Chemin du repertoire en fonction de l'OS
+    # Chemin du repertoire en fonction de l'OS + Création si rep n'existe pas
     if platform.system() in ["Darwin", "Linux"]:
+        if not os.path.exists("./stockage_table"):
+            os.mkdir("./stockage_table")
         repertoire="./stockage_table"
     else:
+        if not os.path.exists(".\\stockage_table"):
+            os.mkdir(".\\stockage_table")
         repertoire=".\\stockage_table"
     
     print("+==============================BASE DE DONNEES==============================+")
