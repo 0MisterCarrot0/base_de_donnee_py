@@ -7,7 +7,7 @@ def creation_table():
     
     # Détermine le type de chemin du fichier
     if platform.system() in ["Darwin", "Linux"]:
-        file_path=f"./stckage_table/table_{num_table}.csv"
+        file_path=f"./stockage_table/table_{num_table}.csv"
     else:
         file_path=f".\\stockage_table\\table_{num_table}.csv"
     
