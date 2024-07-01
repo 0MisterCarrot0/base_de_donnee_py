@@ -6,6 +6,7 @@ import time
 import crea_suppr_table
 import edition
 import affichage
+import recherche
 
 def clear():
     if platform.system()=="Darwin" or platform.system()=="Linux":
@@ -33,9 +34,10 @@ def main():
     print("| 2- Suppression de table                                                   |")
     print("| 3- Edition de table                                                       |")
     print("| 4- Affichage de table                                                     |")
-    print("| 5- Quitter                                                                |")
+    print("| 5- Recherche                                                              |")
+    print("| 6- Quitter                                                                |")
     print("+---------------------------------------------------------------------------+")
-    choix=int(input("Quel est votre choix ? (1/2/3/4/5) : "))
+    choix=int(input("Quel est votre choix ? (1/2/3/4/5/6) : "))
     
     match choix:
         
@@ -187,8 +189,44 @@ def main():
                 clear()
                 main()
         
-        # Quitter le programme
+        # Rechercher un élément
         case 5:
+            clear()
+            try:
+                print("Les tables existantes sont : ", end="")
+                if len(os.listdir(repertoire))!=0:
+                    for file in os.listdir(repertoire):
+                        print(file[6], end=" ")
+                    print("")
+                else:
+                    print("Aucune table n'existe, retour au menu")
+                    time.sleep(3)
+                    main()
+                recherche.rechercher()
+                choixx=input("Ecrivez pour quitter : ")
+                if choixx!="":
+                    clear()
+                    main()
+                else:
+                    recherche.rechercher()
+            except IndexError:
+                print("La table n'existe pas, retour au menu")
+                time.sleep(3)
+                clear()
+                main()
+            except ValueError:
+                print("Le nom de la colonne n'a pas été trouvé, retour au menu")
+                time.sleep(3)
+                clear()
+                main()
+            except Exception:
+                print("Aucune correspondance dans la colonne, retour au menu")
+                time.sleep(3)
+                clear()
+                main()
+        
+        # Quitter le programme
+        case 6:
             print("Fermeture du programme")
         
         # Mauvais choix
