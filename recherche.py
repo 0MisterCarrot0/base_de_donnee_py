@@ -49,7 +49,6 @@ def rechercher():
         raise ValueError
     else:
         colonne=extraire_colonne(file_path, place)
-    print(colonne)
     
     # Recherche l'élément dans la colonne
     if len(colonne[0])>4 and colonne[0][-5:]=="(int)":
@@ -62,14 +61,29 @@ def rechercher():
             lieu.append(i)
     
     # Affichage des lignes correspondantes
+    largeur_case=15
     if lieu==[]:
         raise Exception
     else:
+        # Tête de la table
         for i in range(len(header)):
-            print(f"|| {header[i]}", end=" ")
-        print("")
+            print("+", end="")
+            print("="*(largeur_case), end="")
+        print("+")
+        for i in range(len(header)):
+            print(f"|{header[i][:largeur_case]:^{largeur_case}}", end="")
+        print("|")
+        for i in range(len(header)):
+            print("+", end="")
+            print("="*(largeur_case), end="")
+        print("+")
         L=csv_vers_liste(file_path)
+        # Entités de la page
         for i in lieu:
             for j in range(len(L[i])):
-                print(f"| {L[i][j]}", end=" ")
+                print(f"|{L[i][j][:largeur_case]:^{largeur_case}}", end="")
             print("|")
+            for j in range(len(L[i])):
+                print("+", end="")
+                print("-"*(largeur_case), end="")
+            print("+")
